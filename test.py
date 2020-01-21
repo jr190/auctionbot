@@ -1,30 +1,30 @@
+buyingNorm = ["wtb","buy","looking for","ltb"]
+sellingNorm = ['lts', "sell","looking to","wts"]
+def isBuying(rawMessage,buyingNorm):
+    rawMessage = message.lower()
+    for buy in buyingNorm:
+        if buy in rawMessage:
+            return True
+def findKeys(rawMessage,keys):
+    returnKeys = []
+    for key in keys:
+        if key in rawMessage:
+            returnKeys.append(key)
+    return returnKeys
+def isSelling(rawMessage,sellingNorm):
+    rawMessage = message.lower()
+    for sell in sellingNorm:
+        if sell in rawMessage:
+            return True
 
-def isBuying(rawmsg,keywords):
-    for key in keywords:
-        if key in rawmsg:
-            return (key,True)
-
-def isSelling(rawmsg,keywords):
-    for key in keywords:
-        if key in rawmsg:
-            return (key,True)
-
-
-def asdas(message):
-    buyingKeywords = ["wtb", "buy", "looking for", "ltb"]
-    sellingKeywords = ["wts", "sell", "looking to", "lts"]
-
-    rawMessage = message.content.lower()
-    buyKey,buyBool = isBuying(rawMessage,buyingKeywords)
-    sellKey,sellBool = isSelling(rawMessage,sellingKeywords)
-
-    if buyBool is True:
-        print(buyKey)
+    
+messages = ["looking for mando", "i am LTB a gun","want to sell a schem","lts resource crate","wtb mando helm and lts aug crit 25s"]
         
-    if sellBool is True:
-        print(sellKey)
-
-
-legends = "LTS WG Skull (1/3 pieces required for Lava Crystal) 1m PST with dropoff location"
-
-asdas(legends)
+for message in messages:
+	message = message.lower()
+	if isBuying(message,buyingNorm) is True and isSelling(message,sellingNorm) is True:
+		print(message,str(findKeys(message,buyingNorm+sellingNorm)))
+	elif isBuying(message,buyingNorm) is True:
+		print(message,str(findKeys(message,buyingNorm)))
+	elif isSelling(message,sellingNorm) is True:
+		print(message,str(findKeys(message,sellingNorm)))
