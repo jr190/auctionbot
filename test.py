@@ -15,40 +15,41 @@ for column in Items.columns:  #column is basically the header to every column (i
 
 newmessages = ['looking to buy blue meth, scout armor rebel, and penis gun',"orange meth","PC Elite tusken"]
 
-for message in newmessages:
+compareLists(newmessages,listOfItems)
+
+buyingNorm = ["wtb","buy","looking for","ltb"]
+sellingNorm = ['lts', "sell","looking to","wts"]
+
+def compareLists(listOfMessages,listOfItems):
+	for message in listOfMessages:
 	itemsBeingBought = []
 	for item in listOfItems:
 		for keyword in item.list:
 			if str(keyword) in message.lower():
 				itemsBeingBought.append((item.name,str(keyword)))
 	print(itemsBeingBought)
-	
-
-buyingNorm = ["wtb","buy","looking for","ltb"]
-sellingNorm = ['lts', "sell","looking to","wts"]
-
 
 def isBuying(rawMessage,buyingNorm):
     rawMessage = message.lower()
     for buy in buyingNorm:
         if buy in rawMessage:
             return True
+
 def findKeys(rawMessage,keys):
     returnKeys = []
     for key in keys:
         if key in rawMessage:
             returnKeys.append(key)
     return returnKeys
+
 def isSelling(rawMessage,sellingNorm):
     rawMessage = message.lower()
     for sell in sellingNorm:
         if sell in rawMessage:
             return True
 
-    
 #messages = ["looking for mando", "i am LTB a gun","want to sell a schem","lts resource crate","wtb mando helm and lts aug crit 25s"]
 
-        
 '''for message in messages:
 	message = message.lower()
 	if isBuying(message,buyingNorm) is True and isSelling(message,sellingNorm) is True:
